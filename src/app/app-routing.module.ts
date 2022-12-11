@@ -32,7 +32,6 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {roles: [Role.ADMIN]}
   },
-
   {path: '404', component: NotFoundComponent},
   {path: '401', component: UnauthorizedComponent}
 ];
