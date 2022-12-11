@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {User} from "./models/user";
+import {AuthenticationService} from "./services/authentication.service";
+import {Role} from "./models/role.enum";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +11,23 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-authorization';
+
+  currentUser: User = new User();
+
+  constructor(private authenticationService: AuthenticationService,
+              private router: Router) {
+    this.authenticationService.currentUser.subscribe(data=> {
+      this.currentUser = data;
+    });
+  }
+
+  isAdmin() {
+    return this.currentUser?.role === Role.ADMIN;
+  }
+
+  logOut() {
+    this.authenticationService.logOut();
+    this.router.navigate(['/login']);
+  }
+
 }
