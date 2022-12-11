@@ -26,6 +26,7 @@ import {authInterceptorProviders} from "./interceptors/auth.interceptor";
     NotFoundComponent,
     UnauthorizedComponent
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
